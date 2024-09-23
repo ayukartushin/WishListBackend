@@ -66,4 +66,4 @@
 │
 ├── .gitignore
 ├── pom.xml                                              # Файл конфигурации Maven
-├── README.md</pre>
+└── README.md</pre>

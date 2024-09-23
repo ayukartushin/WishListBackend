@@ -1,29 +1,31 @@
-package su.kartushin.wishlistapp.entity;
-
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+package su.kartushin.wishlist.model;
 
 import jakarta.persistence.*;
+import lombok.*;
 
+@Entity
+@Table(name = "wishlist_items")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
-@Table(name = "wishlist_items")
+@Builder
 public class WishlistItem {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
-    private String itemName;
+    private String name;
 
     private String description;
 
-    private Double price;
+    private String url;
 
-    @ManyToOne
+    // Связь с Wishlist
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "wishlist_id", nullable = false)
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     private Wishlist wishlist;
 }
